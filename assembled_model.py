@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[151]:
 
 
 import pandas as pd
@@ -35,14 +39,45 @@ with open('model_small.pcl', 'rb') as f:
 pred = predictor(model_large=model_large, model_small=model_small, sku=sku, carton=carton)
 
 
-# объявляем функцию предсказания
+#объявляем функцию предсказания
 
-def predict(sample):
+# переводим ввод из подаваемого формата в список
+
+def predict(input):
+    
+    sample = []
+    for n in range(len(input)+1):
+        list_item = [input['items'][n]['sku']]* input['items'][n]['count']
+        sample.extend(list_item)
+    
+    
+#def predict(sample): 
+    
+    
+    
     predictions = pred.predict(sample)
     
     pc = packer(predictions, carton)
     
     result = pc.pack()
     
-    return result
+    dict_list = []
+
+    
+    
+    
+    # переводим вывод в потребный список словарей
+    for row in result.index:
+        dictionary = {}
+
+        dictionary['carton'] = result.loc[row, 'box']
+        series = pd.Series(result.loc[row, 'goods']).value_counts()
+        list_items = []
+        for n in series.index: 
+
+            list_items.append({'sku':{'sku': n}, 'amount': series[n]})
+        dictionary['skus'] = list_items
+        dict_list.append(dictionary)
+    
+    return dict_list
 
