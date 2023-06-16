@@ -1,7 +1,9 @@
+!pip install fastapi
+!pip install uvicorn
 from fastapi import FastAPI, Request
 import uvicorn
 import argparse
-from model import predict
+from assembled_model import predict
 from pydantic import BaseModel
 from typing import List
 
