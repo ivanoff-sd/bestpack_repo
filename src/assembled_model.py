@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[35]:
+# In[38]:
 
 
 import pandas as pd
@@ -45,7 +45,10 @@ pred = predictor(model_large=model_large, model_small=model_small, sku=sku, cart
 
 def predict(in_put):
     
-    in_put = json.loads(in_put)
+    try:    
+        in_put = json.loads(in_put)
+    except:
+        pass
     
     sample = []
     for n in range(len(in_put)+1):
