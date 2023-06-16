@@ -1,9 +1,7 @@
-!pip install fastapi
-!pip install uvicorn
 from fastapi import FastAPI, Request
 import uvicorn
 import argparse
-from assembled_model import predict
+# from assembled_model import predict
 from pydantic import BaseModel
 from typing import List
 
@@ -34,7 +32,7 @@ def get_prediction(request: Order):
     for el in request.items:
         items.append(el.dict())
 
-    y = predict(items)
+    y = items
     return {"orderId": request.orderId,
             "package": y,
             "status": "ok"}
