@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[151]:
+# In[35]:
 
 
 import pandas as pd
 import numpy as np
 import pickle
-
+import json
 # импорт кастомных классов
 from class_predictor import predictor
 from class_packer import packer
@@ -43,21 +43,24 @@ pred = predictor(model_large=model_large, model_small=model_small, sku=sku, cart
 
 # переводим ввод из подаваемого формата в список
 
-def predict(input):
+def predict(in_put):
+    
+    in_put = json.loads(in_put)
     
     sample = []
-    for n in range(len(input)+1):
-        list_item = [input['items'][n]['sku']]* input['items'][n]['count']
+    for n in range(len(in_put)+1):
+        list_item = [in_put['items'][n]['sku']]* in_put['items'][n]['count']
         sample.extend(list_item)
-    
+
     
 #def predict(sample): 
     
     
     
     predictions = pred.predict(sample)
-    
+
     pc = packer(predictions, carton)
+
     
     result = pc.pack()
     
