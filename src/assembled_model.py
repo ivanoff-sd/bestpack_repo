@@ -7,7 +7,7 @@
 import pandas as pd
 import numpy as np
 import pickle
-import json
+
 # импорт кастомных классов
 from class_predictor import predictor
 from class_packer import packer
@@ -44,11 +44,7 @@ pred = predictor(model_large=model_large, model_small=model_small, sku=sku, cart
 # переводим ввод из подаваемого формата в список
 
 def predict(in_put):
-    
-    try:    
-        in_put = json.loads(in_put)
-    except:
-        pass
+
     
     sample = []
     for n in range(0, len(in_put)):
