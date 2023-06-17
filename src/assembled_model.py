@@ -51,8 +51,8 @@ def predict(in_put):
         pass
     
     sample = []
-    for n in range(len(in_put)+1):
-        list_item = [in_put['items'][n]['sku']]* in_put['items'][n]['count']
+    for n in range(0, len(in_put)):
+        list_item = [in_put[n]['sku']]* in_put[n]['count']
         sample.extend(list_item)
 
     
