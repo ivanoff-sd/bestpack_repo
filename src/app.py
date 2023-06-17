@@ -1,9 +1,11 @@
 from fastapi import FastAPI, Request
 import uvicorn
 import argparse
-# from assembled_model import predict
 from pydantic import BaseModel
 from typing import List
+
+DEBUG = True
+
 
 class Item(BaseModel):
     sku: str
@@ -32,7 +34,15 @@ def get_prediction(request: Order):
     for el in request.items:
         items.append(el.dict())
 
-    y = items
+    if not DEBUG:
+        from assembled_model import predict
+        y = predict(items)
+    else:
+        y = [
+            {'carton': 'YMF', 'skus': [{'sku': 1}]},
+            {'carton': 'NONPACK', 'skus': [{'sku': 1}]},
+        ]
+
     return {"orderId": request.orderId,
             "package": y,
             "status": "ok"}

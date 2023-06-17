@@ -16,8 +16,8 @@ from class_packer import packer
 #
 # ВНИМАНИЕ! ВНИМАНИЕ!!!
 # Прошу исправить адреса файлов на актуальные!
-carton = pd.read_csv('carton_full_features.csv')
-sku = pd.read_csv('full_sku_data.csv')
+carton = pd.read_csv('data/carton_full_features.csv')
+sku = pd.read_csv('data/full_sku_data.csv')
 #
 #
 #
