@@ -9,15 +9,15 @@ import numpy as np
 import pickle
 
 # импорт кастомных классов
-from class_predictor import predictor
-from class_packer import packer
+from mdata.class_predictor import predictor
+from mdata.class_packer import packer
 
 #
 #
 # ВНИМАНИЕ! ВНИМАНИЕ!!!
 # Прошу исправить адреса файлов на актуальные!
-carton = pd.read_csv('data/carton_full_features.csv')
-sku = pd.read_csv('data/full_sku_data.csv')
+carton = pd.read_csv('mdata/carton_full_features.csv')
+sku = pd.read_csv('mdata/full_sku_data.csv')
 #
 #
 #
@@ -25,11 +25,11 @@ sku = pd.read_csv('data/full_sku_data.csv')
 #
 
 # откроем модели
-with open('model_big.pcl', 'rb') as f:
+with open('mdata/model_big.pcl', 'rb') as f:
 
     model_large = pickle.load(f)
     
-with open('model_small.pcl', 'rb') as f:
+with open('mdata/model_small.pcl', 'rb') as f:
 
     model_small = pickle.load(f)
     
