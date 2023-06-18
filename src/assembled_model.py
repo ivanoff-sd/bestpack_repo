@@ -75,11 +75,10 @@ def predict(in_put):
         dictionary['carton'] = result.loc[row, 'box']
         series = pd.Series(result.loc[row, 'goods']).value_counts()
         list_items = []
-        for n in series.index: 
+        for n in series.index:
 
-            list_items.append({'sku':{'sku': n}, 'amount': series[n]})
+            list_items.append({'sku':{'sku': n}, 'amount': int(series[n])})
         dictionary['skus'] = list_items
         dict_list.append(dictionary)
     
     return dict_list
-

@@ -15,4 +15,3 @@ data = {"orderId": "unique_order_id",
 r = requests.get("http://localhost:8000/pack", json=data)
 
 print(r.json())
-
